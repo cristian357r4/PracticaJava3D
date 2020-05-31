@@ -20,6 +20,14 @@ public class SimpleLightedColoredCubePrimitive {
                         background.setApplicationBounds(bounding);        // marcar su zona de influencia de acuerdo al objeto bounding
                         return background;
                     }
+
+                    public PointLight createPointLight() {
+                        return null;
+                    }
+
+                    public AmbientLight createAmbientLight() {
+                        return null;
+                    }
                 });
                 Appearance appearance = new Appearance();
                 appearance.setMaterial(new Material());

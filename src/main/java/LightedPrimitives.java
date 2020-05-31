@@ -1,12 +1,14 @@
 import com.sun.j3d.utils.geometry.Box;
+import com.sun.j3d.utils.geometry.Cone;
+import com.sun.j3d.utils.geometry.Cylinder;
+import com.sun.j3d.utils.geometry.Sphere;
 
 import javax.media.j3d.*;
-import javax.swing.*;
 import javax.vecmath.Color3f;
 import javax.vecmath.Point3f;
 import java.awt.*;
 
-public class SimpleLightedColoredCube{
+public class LightedPrimitives {
     final BoundingSphere bounding;
 
     public MyPanel getMyPanel() {
@@ -16,17 +18,18 @@ public class SimpleLightedColoredCube{
 
     final MyPanel myPanel = new MyPanel();
     public static void main(String[] args) {
-        new SimpleLightedColoredCube();
+        new LightedPrimitives();
     }
 
-    public SimpleLightedColoredCube() {
+    public LightedPrimitives() {
 
 
         bounding = new BoundingSphere();
         myPanel.setBranchGroup(new CreateSceneGraph() {
             public BranchGroup createSceneGraph() {
-                TransformGroup objectTransformGroup, spinTransformGroup;
+
                 BranchGroup root = new BranchGroup();
+
                 Background background = myPanel.setBackground(new Iluminacion() {
                     public Background createBackground() {
                         Background background = new Background();
@@ -96,9 +99,28 @@ public class SimpleLightedColoredCube{
                     }
                 });
 
+                TransformGroup spinTransformGroup;
 
+                TransformGroup scaleTransformGroup = myPanel.setTransformGroup(new Transformaciones() {
+                    public TransformGroup setTransformGroup() {
+                        return null;
+                    }
+
+                    public TransformGroup createInterpolatorSpin() {
+                        return null;
+                    }
+
+                    public TransformGroup createScaleTransform() {
+                        Transform3D transform3D = new Transform3D();
+                        transform3D.setScale(0.25);
+                        return new TransformGroup(transform3D);
+
+                    }
+                });
 
                 Appearance appearance = new Appearance();
+
+                appearance.setMaterial(new Material());
 
                 spinTransformGroup = myPanel.setTransformGroup(new Transformaciones() {
 
@@ -129,18 +151,22 @@ public class SimpleLightedColoredCube{
                     }
                 });
 
+                Box box = new Box(0.2f, 0.2f, 0.2f, appearance);
+                Sphere sphere = new Sphere(1.3f);
+                Cylinder cylinder = new Cylinder();
+                Cone cone = new Cone(1.3f, 1.3f);
 
-
-                appearance.setMaterial(new Material());
-
-                Box box = new Box(0.3f, 0.3f, 0.3f, appearance);
                 root.addChild(background);
                 root.addChild(pointLight1);
                 root.addChild(pointLight2);
                 root.addChild(ambientLight);
-                //spinTransformGroup.addChild(box);
-                //root.addChild(spinTransformGroup);
-                root.addChild(box);
+                scaleTransformGroup.addChild(sphere);
+                scaleTransformGroup.addChild(cone);
+                scaleTransformGroup.addChild(cylinder);
+                scaleTransformGroup.addChild(box);
+                spinTransformGroup.addChild(scaleTransformGroup);
+
+                root.addChild(spinTransformGroup);
 
                 return root;
 
@@ -149,6 +175,7 @@ public class SimpleLightedColoredCube{
 
         myPanel.inicializar();
 
-        new SnippetFrame(myPanel, "Programa Ejemplo");
+        new SnippetFrame(myPanel, "Lighted Primitives");
     }
+
 }

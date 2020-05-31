@@ -1,9 +1,6 @@
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
-import javax.media.j3d.Background;
-import javax.media.j3d.BranchGroup;
-import javax.media.j3d.Canvas3D;
-import javax.media.j3d.TransformGroup;
+import javax.media.j3d.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -50,5 +47,12 @@ public class MyPanel extends JPanel {
 
     public Background setBackground(Iluminacion viewBranchIluminacion){
         return viewBranchIluminacion.createBackground();
+    }
+
+    public PointLight createPointLight(Iluminacion pointlight){
+        return pointlight.createPointLight();
+    }
+    public AmbientLight createAmbientLight(Iluminacion ambientLight){
+        return ambientLight.createAmbientLight();
     }
 }

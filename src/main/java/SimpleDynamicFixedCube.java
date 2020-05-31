@@ -22,6 +22,10 @@ public class SimpleDynamicFixedCube {
                     public TransformGroup createInterpolatorSpin() {
                         return null;
                     }
+
+                    public TransformGroup createScaleTransform() {
+                        return null;
+                    }
                 });
 
                 spinTransformGroup = myPanel.setInterpolator(new Transformaciones() {
@@ -46,6 +50,10 @@ public class SimpleDynamicFixedCube {
 
                         return objectSpin;
 
+                    }
+
+                    public TransformGroup createScaleTransform() {
+                        return null;
                     }
                 });
 

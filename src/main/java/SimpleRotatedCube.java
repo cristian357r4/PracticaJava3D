@@ -36,6 +36,10 @@ public class SimpleRotatedCube{
                     public TransformGroup createInterpolatorSpin() {
                         return null;
                     }
+
+                    public TransformGroup createScaleTransform() {
+                        return null;
+                    }
                 });
 
                 transformGroup.addChild(new ColorCube(0.4));

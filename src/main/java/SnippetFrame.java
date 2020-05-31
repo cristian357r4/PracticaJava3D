@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class SnippetFrame extends JFrame{
     public SnippetFrame(JPanel myPanel, String tituloVentana) {
-        super(tituloVentana);
+        setTitle(tituloVentana);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize);
         setExtendedState(MAXIMIZED_BOTH);
